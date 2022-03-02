@@ -2,7 +2,7 @@
 Code Examples of Design Patterns implemented during DP course at AGH UST in 2021
 
 ## Design patterns:
-- [Abstract Factory](../src/abstractFactory)
+- [Abstract Factory](../blob/main/src/abstractFactory)
 - Adapter
 - Builder
 - Chain of Responsibility
