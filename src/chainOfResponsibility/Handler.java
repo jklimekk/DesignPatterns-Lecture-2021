@@ -9,16 +9,15 @@ class Withdraw5 implements Handler{
     private Handler nextHandler;
     @Override
     public void handle(Money money) {
-        if(money.getValue() >= 5){
-            int noteNumber = money.getValue()/5;
-            int change = money.getValue()%5;
-            System.out.println("banknoty 5 = " + noteNumber);
-            if (change > 0){
-                System.out.println("bankomat nie ma takiej gotówki");
+        if(money.getValue() >= 5) {
+            int noteNumber = money.getValue() / 5;
+            int change = money.getValue() % 5;
+            System.out.println("5 bills = " + noteNumber);
+            if (change > 0) {
+                System.out.println("can't withdraw amount: " + change);
             }
-        }
-        else{
-            System.out.println("bankomat nie ma takiej gotówki");
+        } else {
+            System.out.println("can't withdraw amount: " + money);
         }
     }
 
@@ -32,15 +31,14 @@ class Withdraw10 implements Handler{
     private Handler nextHandler;
     @Override
     public void handle(Money money) {
-        if(money.getValue() >= 10){
-            int noteNumber = money.getValue()/10;
-            int change = money.getValue()%10;
-            System.out.println("banknoty 10 = " + noteNumber);
-            if (change > 0){
+        if(money.getValue() >= 10) {
+            int noteNumber = money.getValue() / 10;
+            int change = money.getValue() % 10;
+            System.out.println("10 bills = " + noteNumber);
+            if (change > 0) {
                 nextHandler.handle(new Money(change));
             }
-        }
-        else{
+        } else {
             nextHandler.handle(money);
         }
     }

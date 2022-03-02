@@ -3,11 +3,10 @@ package singleton;
 public class LazySingleton {
     private volatile static LazySingleton singleton = null;
 
-    // pamietac o pustym konstruktorze w tej wersji!
-    private LazySingleton(){};
+    private LazySingleton(){}; // important!
 
     public static LazySingleton getInstance() {
-        if(singleton == null) { // wielowatkowo
+        if(singleton == null) { // multi-thread
             synchronized (LazySingleton.class) {
                 if(singleton == null) {
                     singleton = new LazySingleton();
@@ -19,30 +18,28 @@ public class LazySingleton {
     }
 }
 
-// chciwa wersja
-//public class Singleton {
-//    private static Singleton singleton = new Singleton();
-//
-//    // pamietac o pustym konstruktorze w tej wersji!
-//    private Singleton(){};
-//
-//    public static Singleton getInstance() {
-//        return singleton;
-//    }
-//}
+// eager version
+class EagerSingleton {
+    private static EagerSingleton singleton = new EagerSingleton();
+
+    private EagerSingleton(){};
+
+    public static EagerSingleton getInstance() {
+        return singleton;
+    }
+}
 
 
-//najlepsza wersja
-//public class Singleton {
-//
-//    // pamietac o pustym konstruktorze w tej wersji!
-//    private Singleton(){};
-//
-//    public static Singleton getInstance() {
-//        return SingletonHelper.singleton;
-//    }
-//
-//    private class SingletonHelper {
-//        private static final Singleton singleton = new Singleton();
-//    }
-//}
+// best version
+class AnotherSingleton {
+
+    private AnotherSingleton(){};
+
+    public static AnotherSingleton getInstance() {
+        return SingletonHelper.singleton;
+    }
+
+    private class SingletonHelper {
+        private static final AnotherSingleton singleton = new AnotherSingleton();
+    }
+}

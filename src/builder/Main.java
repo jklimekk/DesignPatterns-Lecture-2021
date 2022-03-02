@@ -6,7 +6,7 @@ public class Main {
         builder.setCommand("select")
                 .setParam("*")
                 .addTable("students")
-                .addCondition("ocena>xd");
+                .addCondition("grade > 5");
 
         Query query = builder.getQuery();
         System.out.println(query);
